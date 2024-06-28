@@ -1,7 +1,9 @@
-'use strict';
+'use strict'
 
-module.exports = utils;
+console.log('utils')
+
+module.exports = utils
 
 function utils() {
-  return 'Hello from utils';
+  return 'Hello from utils'
 }
