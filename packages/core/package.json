@@ -17,7 +17,8 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.yarnpkg.com/"
+    "registry": "https://registry.yarnpkg.com/",
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,9 @@
   "bugs": {
     "url": "https://github.com/victory820/vc-cli/issues"
   },
-  "gitHead": "cd4d780ccb3f8f00275632666e70c6c02726a008"
+  "gitHead": "cd4d780ccb3f8f00275632666e70c6c02726a008",
+  "dependencies": {
+    "import-local": "^3.1.0",
+    "npmlog": "^7.0.1"
+  }
 }

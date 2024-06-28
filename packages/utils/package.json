@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/utils",
-  "version": "0.0.5",
+  "version": "0.0.4",
   "description": "util tool pkg",
   "author": "victor <sheng4526160@163.com>",
   "homepage": "https://github.com/victory820/vc-cli#readme",
@@ -14,7 +14,8 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.yarnpkg.com/"
+    "registry": "https://registry.yarnpkg.com/",
+    "access": "public"
   },
   "repository": {
     "type": "git",

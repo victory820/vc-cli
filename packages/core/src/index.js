@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 'use strict'
+const importLocal = require('import-local')
 
-console.log('core')
-
-module.exports = core
-
-function core() {
-  return 'Hello from core'
+if (importLocal(__filename)) {
+  require('npmlog').info('vc-cli', '正在使用本地版本')
+} else {
+  require('../lib/index')(process.argv.slice(2))
 }
