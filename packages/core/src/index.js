@@ -1,7 +1,11 @@
-'use strict';
+#!/usr/bin/env node
 
-module.exports = core;
+'use strict'
+
+console.log('hello world')
+
+module.exports = core
 
 function core() {
-  return 'Hello from core';
+  return 'Hello from core'
 }
