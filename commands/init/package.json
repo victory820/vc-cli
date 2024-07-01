@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/init",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "command init",
   "keywords": [
     "init",
