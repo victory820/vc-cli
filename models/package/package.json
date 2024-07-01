@@ -28,7 +28,11 @@
     "url": "https://github.com/victory820/vc-cli/issues"
   },
   "dependencies": {
-    "@vc-cli/utils": "^0.0.8"
+    "@vc-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "@vc-cli/format-path": "file:../../utils/format-path",
+    "@vc-cli/utils": "file:../../utils/utils",
+    "npminstall": "^7.12.0",
+    "pkg-dir": "5.0.0"
   },
   "gitHead": "dbdaea3454768c94e0348a35dadbee84be3cc6a6"
 }

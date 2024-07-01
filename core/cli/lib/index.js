@@ -26,7 +26,7 @@ async function index() {
     await prepare()
     registerCommand()
   } catch (error) {
-    log.error('global:', error.message)
+    log.error('global:', error)
   }
 }
 

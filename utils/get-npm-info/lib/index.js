@@ -26,4 +26,4 @@ function getDefaultRegistry(isOriginal = false) {
   return isOriginal ? 'https://registry.npmjs.org' : 'https://registry.npmmirror.com'
 }
 
-module.exports = { getNpmInfo }
+module.exports = { getNpmInfo, getDefaultRegistry }

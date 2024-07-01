@@ -33,8 +33,8 @@
   "gitHead": "dbdaea3454768c94e0348a35dadbee84be3cc6a6",
   "dependencies": {
     "@vc-cli/exec": "file:../exec",
-    "@vc-cli/get-npm-info": "^0.0.8",
-    "@vc-cli/log": "^0.0.8",
+    "@vc-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "@vc-cli/log": "file:../../utils/log",
     "colors": "^1.4.0",
     "commander": "^12.1.0",
     "dotenv": "^16.4.5",

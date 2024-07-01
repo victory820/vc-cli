@@ -1,11 +1,12 @@
 {
-  "name": "@vc-cli/exec",
-  "version": "0.0.8",
-  "description": "exec command",
+  "name": "@vc-cli/fortmat-path",
+  "version": "0.0.1",
+  "description": "path format",
   "keywords": [
-    "exec",
-    "command",
-    "init"
+    "path",
+    "format",
+    "mac",
+    "windows"
   ],
   "author": "victor <sheng4526160@163.com>",
   "homepage": "https://github.com/victory820/vc-cli#readme",
@@ -27,14 +28,9 @@
     "url": "git+https://github.com/victory820/vc-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/exec.test.js"
+    "test": "node ./__tests__/format-path.test.js"
   },
   "bugs": {
     "url": "https://github.com/victory820/vc-cli/issues"
-  },
-  "dependencies": {
-    "@vc-cli/log": "file:../../utils/log",
-    "@vc-cli/package": "file:../../models/package"
-  },
-  "gitHead": "dbdaea3454768c94e0348a35dadbee84be3cc6a6"
+  }
 }
