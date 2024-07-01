@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/package",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "models package",
   "author": "victor <sheng4526160@163.com>",
   "homepage": "https://github.com/victory820/vc-cli#readme",
@@ -28,7 +28,7 @@
     "url": "https://github.com/victory820/vc-cli/issues"
   },
   "dependencies": {
-    "@vc-cli/utils": "^0.0.7"
+    "@vc-cli/utils": "^0.0.8"
   },
   "gitHead": "dbdaea3454768c94e0348a35dadbee84be3cc6a6"
 }

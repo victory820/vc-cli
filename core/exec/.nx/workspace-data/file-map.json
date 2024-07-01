@@ -1,0 +1,35 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.3.2",
+  "deps": {
+    "@vc-cli/log": "^0.0.8",
+    "@vc-cli/package": "^0.0.8"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": "README.md",
+        "hash": "10981106671232858015"
+      },
+      {
+        "file": "__tests__/exec.test.js",
+        "hash": "7830310479433844353"
+      },
+      {
+        "file": "lib/config.js",
+        "hash": "663066530788817681"
+      },
+      {
+        "file": "lib/index.js",
+        "hash": "18283232166693853801"
+      },
+      {
+        "file": "package.json",
+        "hash": "2434488044255552307"
+      }
+    ]
+  }
+}

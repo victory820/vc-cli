@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/core",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "core pkg",
   "author": "victor <sheng4526160@163.com>",
   "homepage": "https://github.com/victory820/vc-cli#readme",
@@ -32,9 +32,9 @@
   },
   "gitHead": "dbdaea3454768c94e0348a35dadbee84be3cc6a6",
   "dependencies": {
-    "@vc-cli/exec": "^0.0.7",
-    "@vc-cli/get-npm-info": "^0.0.7",
-    "@vc-cli/log": "^0.0.7",
+    "@vc-cli/exec": "file:../exec",
+    "@vc-cli/get-npm-info": "^0.0.8",
+    "@vc-cli/log": "^0.0.8",
     "colors": "^1.4.0",
     "commander": "^12.1.0",
     "dotenv": "^16.4.5",

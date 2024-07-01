@@ -11,6 +11,7 @@ function exec() {
   log.verbose('exec-homePath:', homePath)
 
   const pkgName = COMMAND_TO_PROJECT_NAME[arguments[arguments.length - 1].name()]
+  log.verbose('exec-pkgName:', pkgName)
 
   const options = {
     targetPath,
