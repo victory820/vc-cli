@@ -32,12 +32,13 @@
   },
   "gitHead": "cd4d780ccb3f8f00275632666e70c6c02726a008",
   "dependencies": {
+    "@vc-cli/exec": "file:../exec",
     "@vc-cli/get-npm-info": "file:../../utils/get-npm-info",
     "@vc-cli/log": "file:../../utils/log",
     "colors": "^1.4.0",
+    "commander": "^12.1.0",
     "dotenv": "^16.4.5",
     "import-local": "^3.1.0",
-    "minimist": "^1.2.8",
     "path-exists": "4.0.0",
     "root-check": "1.0.0",
     "semver": "^7.6.2"

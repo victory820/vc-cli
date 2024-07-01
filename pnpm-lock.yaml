@@ -12,8 +12,13 @@ importers:
         specifier: ^8.1.5
         version: 8.1.5(encoding@0.1.13)
 
+  commands/init: {}
+
   core/cli:
     dependencies:
+      '@vc-cli/exec':
+        specifier: file:../exec
+        version: link:../exec
       '@vc-cli/get-npm-info':
         specifier: file:../../utils/get-npm-info
         version: link:../../utils/get-npm-info
@@ -23,15 +28,15 @@ importers:
       colors:
         specifier: ^1.4.0
         version: 1.4.0
+      commander:
+        specifier: ^12.1.0
+        version: 12.1.0
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
       import-local:
         specifier: ^3.1.0
         version: 3.1.0
-      minimist:
-        specifier: ^1.2.8
-        version: 1.2.8
       path-exists:
         specifier: 4.0.0
         version: 4.0.0
@@ -41,6 +46,21 @@ importers:
       semver:
         specifier: ^7.6.2
         version: 7.6.2
+
+  core/exec:
+    dependencies:
+      '@vc-cli/log':
+        specifier: file:../../utils/log
+        version: link:../../utils/log
+      '@vc-cli/package':
+        specifier: file:../../models/package
+        version: link:../../models/package
+
+  models/package:
+    dependencies:
+      '@vc-cli/utils':
+        specifier: file:../../utils/utils
+        version: link:../../utils/utils
 
   utils/get-npm-info:
     dependencies:
@@ -601,6 +621,10 @@ packages:
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==, tarball: https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz}
     engines: {node: '>= 0.8'}
+
+  commander@12.1.0:
+    resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==, tarball: https://registry.npmjs.org/commander/-/commander-12.1.0.tgz}
+    engines: {node: '>=18'}
 
   common-ancestor-path@1.0.1:
     resolution: {integrity: sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==, tarball: https://registry.npmjs.org/common-ancestor-path/-/common-ancestor-path-1.0.1.tgz}
@@ -2894,6 +2918,8 @@ snapshots:
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
+
+  commander@12.1.0: {}
 
   common-ancestor-path@1.0.1: {}
 

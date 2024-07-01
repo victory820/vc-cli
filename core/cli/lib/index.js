@@ -5,29 +5,87 @@ const path = require('node:path')
 const semver = require('semver')
 const rootCheck = require('root-check')
 const pathExists = require('path-exists')
-const minimist = require('minimist')
 const colors = require('colors')
+const { Command } = require('commander')
 const log = require('@vc-cli/log')
 const { getNpmInfo } = require('@vc-cli/get-npm-info')
+// const init = require('@vc-cli/init')
+const exec = require('@vc-cli/exec')
 
 const pkg = require('../package.json')
-const { LOW_NODE_VERSION, CLI_USER_HOME } = require('./const')
+const { LOW_NODE_VERSION, CLI_USER_HOME, CLI_NAME } = require('./const')
+
+// 生成命令实例
+const program = new Command()
 
 // 命令行中传入的参数
-let args, userHome
+let userHome
 
-async function index(args) {
+async function index() {
   try {
-    checkPkgVersion()
-    checkNodeVersion()
-    checkRoot()
-    await checkUserHome()
-    checkInputArgs()
-    await checkEnv()
-    await checkGlobalUpdate()
+    await prepare()
+    registerCommand()
   } catch (error) {
     log.error('global:', error.message)
   }
+}
+
+function registerCommand() {
+  const { bin, version } = pkg
+  if (bin) {
+    const cliName = Object.keys(bin)[0] || CLI_NAME
+
+    program
+      .name(cliName)
+      .usage('<command> [options]') // 只是展示文字
+      .version(version)
+      .option('-d, --debug', '是否开启调试模式', false)
+      .option('-tp, --targetPath <targetPath>', '全局缓存路径', '')
+
+    // 注册init命令
+    program.command('init [projectName]').option('-f, --force', '是否强制初始化项目').action(exec)
+
+    // 选项是否有debug值
+    program.on('option:debug', function () {
+      const { debug } = this.opts()
+      process.env.CLI_LOG_LEVEL = debug ? 'verbose' : 'info'
+      log.level = process.env.CLI_LOG_LEVEL
+    })
+
+    // 设置全局缓存路径
+    program.on('option:targetPath', function () {
+      const { targetPath } = this.opts()
+      process.env.CLI_TARGET_PATH = targetPath
+    })
+
+    // 处理未知命令
+    program.on('command:*', function (arr) {
+      console.log(colors.red('未知的命令：' + obj[0]))
+      // 获取所有已注册命令，使用name方法
+      const availableCommands = program.commands.map((cmd) => cmd.name())
+
+      if (availableCommands.length > 0) {
+        console.log(colors.red('可用命令：', availableCommands.join(',')))
+      }
+    })
+
+    // if (program.args && program.args.length < 1) {
+    // 是否展示帮助信息
+    // program.outputHelp()
+    // console.log()
+    // }
+
+    program.parse() // 不传参，可以兼容electron
+  }
+}
+
+async function prepare() {
+  checkPkgVersion()
+  checkNodeVersion()
+  checkRoot()
+  await checkUserHome()
+  await checkEnv()
+  await checkGlobalUpdate()
 }
 
 async function checkGlobalUpdate() {
@@ -78,22 +136,6 @@ function createDefaultConfig() {
     config.cliHome = path.join(userHome, CLI_USER_HOME)
   }
   process.env.CLI_HOME_PATH = config.cliHome
-}
-
-function checkInputArgs() {
-  // 检查入参，如果有debug，开启全局调试模式
-  args = minimist(process.argv.slice(2))
-  checkArgs()
-}
-
-function checkArgs() {
-  const isDebug = args.debug
-  if (isDebug) {
-    process.env.LOG_LEVEL = 'verbose'
-  } else {
-    process.env.LOG_LEVEL = 'info'
-  }
-  log.level = process.env.LOG_LEVEL
 }
 
 async function checkUserHome() {
