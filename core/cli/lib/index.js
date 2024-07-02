@@ -13,7 +13,7 @@ const { getNpmInfo } = require('@vc-cli/get-npm-info')
 const exec = require('@vc-cli/exec')
 
 const pkg = require('../package.json')
-const { LOW_NODE_VERSION, CLI_USER_HOME, CLI_NAME } = require('./const')
+const { CLI_USER_HOME, CLI_NAME } = require('./const')
 
 // 生成命令实例
 const program = new Command()
@@ -26,7 +26,12 @@ async function index() {
     await prepare()
     registerCommand()
   } catch (error) {
-    log.error('global:', error)
+    console.log('=是否全局debug模式=', program.debug)
+    if (program.debug) {
+      log.error('global:', error)
+    } else {
+      log.error('global:', error.message)
+    }
   }
 }
 
@@ -81,7 +86,6 @@ function registerCommand() {
 
 async function prepare() {
   checkPkgVersion()
-  checkNodeVersion()
   checkRoot()
   await checkUserHome()
   await checkEnv()
@@ -150,19 +154,6 @@ function checkRoot() {
   // 降低用户权限，即使使用sudo启动项目，也降级为用户权限
   // process.getuid(); 0为root用户，501为分组用户
   rootCheck()
-}
-
-function checkNodeVersion() {
-  // 处理低版本node不支持
-
-  // 当前node版本
-  const currentVersion = process.version
-  const minVersion = LOW_NODE_VERSION
-
-  // 对比版本号
-  if (semver.lt(currentVersion, minVersion)) {
-    log.error('nodeVersion:', `脚手架需要 v${minVersion} 以上版本的node`)
-  }
 }
 
 function checkPkgVersion() {

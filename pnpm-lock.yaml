@@ -12,7 +12,14 @@ importers:
         specifier: ^8.1.5
         version: 8.1.5(encoding@0.1.13)
 
-  commands/init: {}
+  commands/init:
+    dependencies:
+      '@vc-cli/command':
+        specifier: file:../../models/command
+        version: link:../../models/command
+      '@vc-cli/log':
+        specifier: file:../../utils/log
+        version: link:../../utils/log
 
   core/cli:
     dependencies:
@@ -56,6 +63,18 @@ importers:
         specifier: file:../../models/package
         version: link:../../models/package
 
+  models/command:
+    dependencies:
+      '@vc-cli/log':
+        specifier: file:../../utils/log
+        version: link:../../utils/log
+      colors:
+        specifier: ^1.4.0
+        version: 1.4.0
+      semver:
+        specifier: ^7.6.2
+        version: 7.6.2
+
   models/package:
     dependencies:
       '@vc-cli/format-path':
@@ -67,9 +86,15 @@ importers:
       '@vc-cli/utils':
         specifier: file:../../utils/utils
         version: link:../../utils/utils
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.2.0
       npminstall:
         specifier: ^7.12.0
         version: 7.12.0
+      path-exists:
+        specifier: 4.0.0
+        version: 4.0.0
       pkg-dir:
         specifier: 5.0.0
         version: 5.0.0
