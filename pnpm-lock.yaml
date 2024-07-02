@@ -26,6 +26,9 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      semver:
+        specifier: ^7.6.2
+        version: 7.6.2
 
   core/cli:
     dependencies:

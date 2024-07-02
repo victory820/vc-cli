@@ -59,7 +59,6 @@ async function exec() {
   const rootFile = pkg.getRootFilePath()
   if (rootFile) {
     try {
-      // console.log('00==', this.opts())
       // TODO 这里向下传入的参数，可以优化。目前是数组：第一个是名称，第二个是选项
       // 调用init命令下的方法，将参数传入
       // const args = Array.from(arguments)
@@ -70,7 +69,9 @@ async function exec() {
       //     o[key] = cmd[key]
       //   }
       // })
-      // console.log('-99-', this)
+
+      // console.log('-88-', o)
+      // console.log('-99-', this.opts())
       const newArgs = JSON.stringify([pkgName, this.opts()])
       // console.log(newArgs)
       const code = `require('${rootFile}').call(null, ${newArgs})`

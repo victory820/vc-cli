@@ -36,6 +36,7 @@
     "@inquirer/prompts": "^5.1.0",
     "@vc-cli/command": "file:../../models/command",
     "@vc-cli/log": "file:../../utils/log",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "semver": "^7.6.2"
   }
 }
