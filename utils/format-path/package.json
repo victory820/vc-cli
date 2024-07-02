@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/fortmat-path",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "description": "path format",
   "keywords": [
     "path",

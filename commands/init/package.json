@@ -33,7 +33,7 @@
   },
   "gitHead": "dbdaea3454768c94e0348a35dadbee84be3cc6a6",
   "dependencies": {
-    "@vc-cli/log": "file:../../utils/log",
-    "@vc-cli/command": "file:../../models/command"
+    "@vc-cli/command": "file:../../models/command",
+    "@vc-cli/log": "file:../../utils/log"
   }
 }
