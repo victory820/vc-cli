@@ -36,7 +36,13 @@
     "@inquirer/prompts": "^5.1.0",
     "@vc-cli/command": "file:../../models/command",
     "@vc-cli/log": "file:../../utils/log",
+    "@vc-cli/package": "file:../../models/package",
+    "@vc-cli/request": "file:../../utils/request",
+    "@vc-cli/utils": "file:../../utils/utils",
+    "ejs": "^3.1.10",
     "fs-extra": "^11.2.0",
+    "glob": "^10.4.2",
+    "kebab-case": "1.0.2",
     "semver": "^7.6.2"
   }
 }

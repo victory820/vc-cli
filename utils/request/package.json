@@ -1,11 +1,15 @@
 {
-  "name": "@vc-cli/utils",
-  "version": "0.0.9",
-  "description": "util tool pkg",
+  "name": "@vc-cli/request",
+  "version": "0.0.1",
+  "description": "request remote info",
+  "keywords": [
+    "request",
+    "template"
+  ],
   "author": "victor <sheng4526160@163.com>",
   "homepage": "https://github.com/victory820/vc-cli#readme",
   "license": "ISC",
-  "main": "lib/utils.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -22,13 +26,12 @@
     "url": "git+https://github.com/victory820/vc-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/utils.test.js"
+    "test": "node ./__tests__/request.test.js"
   },
   "bugs": {
     "url": "https://github.com/victory820/vc-cli/issues"
   },
-  "gitHead": "dbdaea3454768c94e0348a35dadbee84be3cc6a6",
   "dependencies": {
-    "cli-spinner": "^0.2.10"
+    "axios": "^1.7.2"
   }
 }

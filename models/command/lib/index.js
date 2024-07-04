@@ -24,7 +24,10 @@ class Command {
     // 挂载参数，子类使用
     // this._argv = argv
     this._pkgName = argv[0] || ''
+    // 选项(option定义内容)
     this._options = argv[1] || {}
+    // 命令参数，如init后面的值（数组形式）
+    this._cmdArgs = argv[2]
 
     let runner = new Promise((resolve, reject) => {
       let chain = Promise.resolve()

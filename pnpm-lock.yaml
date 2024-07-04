@@ -23,9 +23,27 @@ importers:
       '@vc-cli/log':
         specifier: file:../../utils/log
         version: link:../../utils/log
+      '@vc-cli/package':
+        specifier: file:../../models/package
+        version: link:../../models/package
+      '@vc-cli/request':
+        specifier: file:../../utils/request
+        version: link:../../utils/request
+      '@vc-cli/utils':
+        specifier: file:../../utils/utils
+        version: link:../../utils/utils
+      ejs:
+        specifier: ^3.1.10
+        version: 3.1.10
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      glob:
+        specifier: ^10.4.2
+        version: 10.4.2
+      kebab-case:
+        specifier: 1.0.2
+        version: 1.0.2
       semver:
         specifier: ^7.6.2
         version: 7.6.2
@@ -71,6 +89,9 @@ importers:
       '@vc-cli/package':
         specifier: file:../../models/package
         version: link:../../models/package
+      '@vc-cli/utils':
+        specifier: file:../../utils/utils
+        version: link:../../utils/utils
 
   models/command:
     dependencies:
@@ -122,7 +143,17 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
 
-  utils/utils: {}
+  utils/request:
+    dependencies:
+      axios:
+        specifier: ^1.7.2
+        version: 1.7.2
+
+  utils/utils:
+    dependencies:
+      cli-spinner:
+        specifier: ^0.2.10
+        version: 0.2.10
 
 packages:
 
@@ -799,6 +830,10 @@ packages:
   cli-cursor@3.1.0:
     resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==, tarball: https://registry.npmjs.org/cli-cursor/-/cli-cursor-3.1.0.tgz}
     engines: {node: '>=8'}
+
+  cli-spinner@0.2.10:
+    resolution: {integrity: sha512-U0sSQ+JJvSLi1pAYuJykwiA8Dsr15uHEy85iCJ6A+0DjVxivr3d+N2Wjvodeg89uP5K6TswFkKBfAD7B3YSn/Q==, tarball: https://registry.npmjs.org/cli-spinner/-/cli-spinner-0.2.10.tgz}
+    engines: {node: '>=0.10'}
 
   cli-spinners@2.6.1:
     resolution: {integrity: sha512-x/5fWmGMnbKQAaNwN+UZlV79qBLM9JFnJuJ03gIi5whrob0xV0ofNVHy9DhwGdsMJQc2OKv0oGmLzvaqvAVv+g==, tarball: https://registry.npmjs.org/cli-spinners/-/cli-spinners-2.6.1.tgz}
@@ -1623,6 +1658,9 @@ packages:
 
   just-diff@6.0.2:
     resolution: {integrity: sha512-S59eriX5u3/QhMNq3v/gm8Kd0w8OS6Tz2FS1NG4blv+z0MuQcBRJyFWjdovM0Rad4/P4aUPFtnkNjMjyMlMSYA==, tarball: https://registry.npmjs.org/just-diff/-/just-diff-6.0.2.tgz}
+
+  kebab-case@1.0.2:
+    resolution: {integrity: sha512-7n6wXq4gNgBELfDCpzKc+mRrZFs7D+wgfF5WRFLNAr4DA/qtr9Js8uOAVAfHhuLMfAcQ0pRKqbpjx+TcJVdE1Q==, tarball: https://registry.npmjs.org/kebab-case/-/kebab-case-1.0.2.tgz}
 
   kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==, tarball: https://registry.npmjs.org/kind-of/-/kind-of-6.0.3.tgz}
@@ -3829,6 +3867,8 @@ snapshots:
     dependencies:
       restore-cursor: 3.1.0
 
+  cli-spinner@0.2.10: {}
+
   cli-spinners@2.6.1: {}
 
   cli-spinners@2.9.2: {}
@@ -4597,7 +4637,7 @@ snapshots:
   jake@10.9.1:
     dependencies:
       async: 3.2.5
-      chalk: 4.1.0
+      chalk: 4.1.2
       filelist: 1.0.4
       minimatch: 3.1.2
 
@@ -4652,6 +4692,8 @@ snapshots:
   just-diff-apply@5.5.0: {}
 
   just-diff@6.0.2: {}
+
+  kebab-case@1.0.2: {}
 
   kind-of@6.0.3: {}
 

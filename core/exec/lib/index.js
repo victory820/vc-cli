@@ -1,14 +1,18 @@
 'use strict'
 const path = require('node:path')
-const cp = require('node:child_process')
 
 const log = require('@vc-cli/log')
 const Package = require('@vc-cli/package')
+const { spawnCompatibility } = require('@vc-cli/utils')
 
 const { COMMAND_TO_PROJECT_NAME, CACHE_DIR } = require('./config')
+
 async function exec() {
   let targetPath = process.env.CLI_TARGET_PATH
   const homePath = process.env.CLI_HOME_PATH
+
+  // 命令参数，如init后面的值（数组形式）
+  const cmdArgs = this.args
   const pkgName = COMMAND_TO_PROJECT_NAME[arguments[arguments.length - 1].name()]
   const pkgVersion = 'latest'
   let pkg
@@ -33,10 +37,10 @@ async function exec() {
     })
     try {
       if (await pkg.exists()) {
-        // 更新
+        log.verbose('更新dependencies中的库')
         await pkg.update()
       } else {
-        // 安装
+        log.verbose('安装dependencies中的库')
         await pkg.install()
       }
     } catch (error) {
@@ -72,8 +76,7 @@ async function exec() {
 
       // console.log('-88-', o)
       // console.log('-99-', this.opts())
-      const newArgs = JSON.stringify([pkgName, this.opts()])
-      // console.log(newArgs)
+      const newArgs = JSON.stringify([pkgName, this.opts(), cmdArgs])
       const code = `require('${rootFile}').call(null, ${newArgs})`
       // const code = ''
       // windows内核
@@ -97,13 +100,6 @@ async function exec() {
       log.error(error.message)
     }
   }
-}
-
-function spawnCompatibility(command, args, options) {
-  const win32 = process.platform === 'win32'
-  const cmd = win32 ? 'cmd' : command
-  const cmdArgs = win32 ? ['/c'].concat(command, args) : args
-  return cp.spawn(cmd, cmdArgs, options || {})
 }
 
 module.exports = exec

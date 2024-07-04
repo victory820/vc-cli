@@ -33,6 +33,7 @@
     "url": "https://github.com/victory820/vc-cli/issues"
   },
   "dependencies": {
+    "@vc-cli/utils": "file:../../utils/utils",
     "@vc-cli/log": "file:../../utils/log",
     "@vc-cli/package": "file:../../models/package"
   },

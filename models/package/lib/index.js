@@ -1,5 +1,6 @@
 'use strict'
 const path = require('node:path')
+const fs = require('node:fs')
 
 const pkgDir = require('pkg-dir').sync
 const npminstall = require('npminstall')
@@ -29,6 +30,8 @@ class Package {
     // 缓存目录前缀（在exec的配置文件中设定的包名）
     // '@vc-cli/init' => @vc-cli+init
     this.cacheFilePathPrefix = this.pkgName.replace('/', '+')
+    // npminstall新版，会生成一个.store文件夹，存放实际的下载库
+    this.newStoreDir = this.storeDir ? path.resolve(this.storeDir, '.store') : ''
   }
 
   async getLatestVersion() {
@@ -48,10 +51,10 @@ class Package {
 
   get cacheFilePath() {
     // /Users/xxx/.vc-cli/dependencies/node_modules/.store/@vc-cli+init@0.0.8
-    return path.resolve(this.storeDir, '.store', `${this.cacheFilePathPrefix}@${this.pkgVersion}`)
+    return path.resolve(this.newStoreDir, `${this.cacheFilePathPrefix}@${this.pkgVersion}`)
   }
   getSpecificCacheFilePath(version) {
-    return path.resolve(this.storeDir, '.store', `${this.cacheFilePathPrefix}@${version}`)
+    return path.resolve(this.newStoreDir, `${this.cacheFilePathPrefix}@${version}`)
   }
 
   // 判断当前package是否存在
@@ -59,9 +62,24 @@ class Package {
     if (this.storeDir) {
       // 已经指定路径安装（缓存模式）
       await this.prepare()
-      // return pathExists(this.cacheFilePath)
-      // TODO 这里判断路径下是否缓存包有待商榷。始终拿最新版本的话，不会走更新逻辑，每次都是安装最新
-      return this.cacheFilePath.includes(this.cacheFilePathPrefix)
+
+      // 判断逻辑
+      // 如果.store目录都没有，则包不存在
+      // 如果.store目录存在，找到目录下所有文件名，遍历后是否包含当前包名。包含是更新操作，不包含安装操作
+      if (!pathExists(this.newStoreDir)) {
+        // .store目录不存在
+        return false
+      } else {
+        // 获取目录下所有文件名
+        const fileList = fs.readdirSync(this.newStoreDir)
+        const result = fileList.some((fileName) => {
+          if (fileName.includes(this.cacheFilePathPrefix)) {
+            return true
+          }
+          return false
+        })
+        return result
+      }
     } else {
       // 默认安装到用户主目录.vc-cli/dependencies/node_modules下，查看这个目录是否存在指定包
       return pathExists(this.targetPath)
@@ -103,6 +121,8 @@ class Package {
         ]
       })
       this.pkgVersion = latestVersion
+    } else {
+      this.pkgVersion = latestVersion
     }
   }
 
@@ -118,8 +138,8 @@ class Package {
           const pkgInfo = require(pkgFile)
           // 寻找main/bin
           if (pkgInfo && pkgInfo.main) {
-            // 路径的兼容
             const resultPath = path.resolve(packageDir, pkgInfo.main)
+            // 路径的兼容
             return formatPath(resultPath)
           }
         }
