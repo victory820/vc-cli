@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/command",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "commands parent class",
   "keywords": [
     "command",
