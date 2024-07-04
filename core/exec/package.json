@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/exec",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "exec command",
   "keywords": [
     "exec",
@@ -33,9 +33,9 @@
     "url": "https://github.com/victory820/vc-cli/issues"
   },
   "dependencies": {
-    "@vc-cli/utils": "file:../../utils/utils",
     "@vc-cli/log": "file:../../utils/log",
-    "@vc-cli/package": "file:../../models/package"
+    "@vc-cli/package": "file:../../models/package",
+    "@vc-cli/utils": "file:../../utils/utils"
   },
   "gitHead": "dbdaea3454768c94e0348a35dadbee84be3cc6a6"
 }

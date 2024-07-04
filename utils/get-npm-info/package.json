@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/get-npm-info",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "get npm info",
   "keywords": [
     "npm",
