@@ -7,8 +7,9 @@ const os = require('node:os')
 const { confirm, select, input } = require('@inquirer/prompts')
 const fse = require('fs-extra')
 const semver = require('semver')
-const { globSync, glob } = require('glob')
+const { globSync } = require('glob')
 const ejs = require('ejs')
+const pathExists = require('path-exists')
 
 const Command = require('@vc-cli/command')
 const log = require('@vc-cli/log')
@@ -144,7 +145,33 @@ class InitCommand extends Command {
   }
 
   async installTemplateCustom() {
-    console.log('安装自定义')
+    if (await this.templatePackage.exists()) {
+      const rootFile = this.templatePackage.getRootFilePath()
+      if (pathExists(rootFile)) {
+        log.notice('开始执行自定义模板')
+        const tempTemplatePackage = this.templatePackage
+        const options = {
+          ...this.selectedTemplate,
+          targetPath: process.cwd(),
+          // /Users/gulianghao/.vc-cli/template/node_modules/.store/vc-cli-template-custom@1.0.1/node_modules/vc-cli-template-custom/template
+          sourcePath: path.resolve(
+            tempTemplatePackage.newStoreDir,
+            `${tempTemplatePackage.pkgName}@${tempTemplatePackage.pkgVersion}`,
+            'node_modules',
+            `${tempTemplatePackage.pkgName}`,
+            'template'
+          )
+        }
+        const code = `require('${rootFile}')(${JSON.stringify(options)})`
+        await spawnCompatibilityAsync('node', ['-e', code], {
+          stdio: 'inherit',
+          cwd: process.cwd()
+        })
+        log.success('自定义模板安装成功')
+      } else {
+        throw new Error('自定义模板入口文件不存在')
+      }
+    }
   }
 
   async installTemplate() {
@@ -167,7 +194,6 @@ class InitCommand extends Command {
 
   async downloadTemplate() {
     const { projectTemplate } = this.projectInfo
-
     this.selectedTemplate = this.templateInfoList.find((item) => item.npmName === projectTemplate)
     const userHome = os.homedir()
     const targetPath = path.resolve(userHome, '.vc-cli', 'template')
@@ -180,7 +206,6 @@ class InitCommand extends Command {
       pkgVersion: version
     }
     const p = new Package(options)
-
     if (!(await p.exists())) {
       const tempSpinner = spinner('正在安装模板...')
       await sleep()
@@ -300,21 +325,18 @@ class InitCommand extends Command {
     })
 
     // 组件，才有描述信息
-    let componentDesc = ''
-    if (typeInfo === TYPE_COMPONENT) {
-      componentDesc = await input({
-        message: '请输入描述信息',
-        default: '',
-        validate: function (v) {
-          // 首字符必须为英文字母；尾字符必须为英文或数字不能是符号；字符仅允许_-
-          if (v && v.length > 0) {
-            return true
-          } else {
-            return '请输入组件描述信息'
-          }
+    const projectDesc = await input({
+      message: '请输入描述信息',
+      default: '',
+      validate: function (v) {
+        // 首字符必须为英文字母；尾字符必须为英文或数字不能是符号；字符仅允许_-
+        if (v && v.length > 0) {
+          return true
+        } else {
+          return '请输入描述信息'
         }
-      })
-    }
+      }
+    })
 
     const projectTemplate = await select({
       message: '请选择模板',
@@ -327,15 +349,13 @@ class InitCommand extends Command {
       pkgName,
       pkgVersion: pkgVersion,
       version: pkgVersion,
-      projectTemplate
+      projectTemplate,
+      description: projectDesc
     }
 
     if (projectInfo.pkgName) {
       const kebabCase = require('kebab-case')
       projectInfo.className = kebabCase(projectInfo.pkgName)
-    }
-    if (componentDesc) {
-      projectInfo.description = componentDesc
     }
 
     // 获取项目基本信息

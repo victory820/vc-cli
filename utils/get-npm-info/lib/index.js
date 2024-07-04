@@ -21,7 +21,7 @@ async function getNpmInfo(npmName, registry) {
       return Promise.reject(err)
     })
 }
-function getDefaultRegistry(isOriginal = false) {
+function getDefaultRegistry(isOriginal = true) {
   // 默认取国内镜像
   return isOriginal ? 'https://registry.npmjs.org' : 'https://registry.npmmirror.com'
 }

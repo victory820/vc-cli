@@ -43,6 +43,7 @@
     "fs-extra": "^11.2.0",
     "glob": "^10.4.2",
     "kebab-case": "1.0.2",
+    "path-exists": "4.0.0",
     "semver": "^7.6.2"
   }
 }
