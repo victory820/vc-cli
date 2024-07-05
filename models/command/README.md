@@ -7,5 +7,4 @@
 ```
 const command = require('command');
 
-// TODO: DEMONSTRATE API
 ```

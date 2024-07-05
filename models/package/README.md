@@ -7,5 +7,4 @@
 ```
 const package = require('package');
 
-// TODO: DEMONSTRATE API
 ```

@@ -63,7 +63,7 @@ async function exec() {
   const rootFile = pkg.getRootFilePath()
   if (rootFile) {
     try {
-      // TODO 这里向下传入的参数，可以优化。目前是数组：第一个是名称，第二个是选项
+      // TODO 这里向下传入的参数，可以优化。目前是数组：第一个是名称，第二个是选项，第三个是命令行中项目名
       // 调用init命令下的方法，将参数传入
       // const args = Array.from(arguments)
       // const cmd = args[args.length - 1]

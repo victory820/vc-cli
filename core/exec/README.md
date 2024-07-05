@@ -7,5 +7,4 @@
 ```
 const exec = require('exec');
 
-// TODO: DEMONSTRATE API
 ```

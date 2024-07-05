@@ -7,5 +7,4 @@
 ```
 const request = require('request');
 
-// TODO: DEMONSTRATE API
 ```

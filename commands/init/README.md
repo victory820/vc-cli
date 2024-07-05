@@ -7,5 +7,4 @@
 ```
 const init = require('init');
 
-// TODO: DEMONSTRATE API
 ```

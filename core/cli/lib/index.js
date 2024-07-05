@@ -127,7 +127,7 @@ async function checkEnv() {
     createDefaultConfig()
     log.verbose('env:', process.env.CLI_HOME_PATH)
   } else {
-    log.error('env:', '环境变量文件不存在')
+    log.error('env:', '环境变量文件不存在，请在根目录下创建.env文件')
   }
 }
 function createDefaultConfig() {

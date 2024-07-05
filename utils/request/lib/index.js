@@ -1,8 +1,7 @@
 'use strict'
 const axios = require('axios')
-
-// TODO 上线后这里地址需要更改
-const baseURL = process.env.VC_CLI_BASE_URL || 'http://localhost:7001'
+const tempUrl = 'https://nanguan.top/cli-server/project/template'
+const baseURL = process.env.VC_CLI_BASE_URL || tempUrl
 
 const request = axios.create({
   baseURL,

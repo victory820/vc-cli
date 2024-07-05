@@ -7,5 +7,4 @@
 ```
 const formatPath = require('format-path');
 
-// TODO: DEMONSTRATE API
 ```
