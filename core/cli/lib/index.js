@@ -26,7 +26,6 @@ async function index() {
     await prepare()
     registerCommand()
   } catch (error) {
-    console.log('=是否全局debug模式=', program.debug)
     if (program.debug) {
       log.error('global:', error)
     } else {
@@ -77,7 +76,6 @@ function registerCommand() {
     // if (program.args && program.args.length < 1) {
     // 是否展示帮助信息
     // program.outputHelp()
-    // console.log()
     // }
 
     program.parse() // 不传参，可以兼容electron

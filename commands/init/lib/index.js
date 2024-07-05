@@ -235,9 +235,7 @@ class InitCommand extends Command {
 
   async prepare() {
     // 如果模板没有就没必要在继续
-    console.log('请求最新。。。。')
     const tempTemplateInfoList = await getProjectTemplate()
-    console.log('后=====请求最新。。。。')
 
     if (!tempTemplateInfoList || tempTemplateInfoList.length < 1) {
       throw new Error('项目模板不存在')

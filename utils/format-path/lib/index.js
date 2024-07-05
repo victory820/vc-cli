@@ -1,6 +1,7 @@
 'use strict'
 const path = require('node:path')
 
+// 兼容路径
 function formatPath(p) {
   if (p && typeof p === 'string') {
     if (path.sep === '/') {

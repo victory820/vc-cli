@@ -17,7 +17,7 @@ class Package {
       throw new Error('options is required')
     }
     if (!isObject(options)) {
-      throw new Error('options must be Object')
+      throw new Error('必须是对象')
     }
     // package的路径
     this.targetPath = options.targetPath

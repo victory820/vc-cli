@@ -74,7 +74,6 @@ async function exec() {
       //   }
       // })
 
-      // console.log('-88-', o)
       // console.log('-99-', this.opts())
       const newArgs = JSON.stringify([pkgName, this.opts(), cmdArgs])
       const code = `require('${rootFile}').call(null, ${newArgs})`
