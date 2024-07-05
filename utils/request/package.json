@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/request",
-  "version": "0.0.11",
+  "version": "1.0.0",
   "description": "request remote info",
   "keywords": [
     "request",
