@@ -1,6 +1,6 @@
 {
   "name": "@vc-cli/format-path",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "path format",
   "keywords": [
     "path",
