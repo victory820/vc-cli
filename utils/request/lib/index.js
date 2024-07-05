@@ -1,6 +1,6 @@
 'use strict'
 const axios = require('axios')
-const tempUrl = 'https://nanguan.top/cli-server/project/template'
+const tempUrl = 'https://nanguan.top/cli-server/'
 const baseURL = process.env.VC_CLI_BASE_URL || tempUrl
 
 const request = axios.create({
