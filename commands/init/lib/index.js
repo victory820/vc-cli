@@ -152,6 +152,8 @@ class InitCommand extends Command {
         const tempTemplatePackage = this.templatePackage
         const options = {
           ...this.selectedTemplate,
+          className: this.projectInfo.className || '',
+          description: this.projectInfo.description || '',
           targetPath: process.cwd(),
           // /Users/gulianghao/.vc-cli/template/node_modules/.store/vc-cli-template-custom@1.0.1/node_modules/vc-cli-template-custom/template
           sourcePath: path.resolve(
@@ -324,7 +326,7 @@ class InitCommand extends Command {
       }
     })
 
-    // 组件，才有描述信息
+    // 描述信息
     const projectDesc = await input({
       message: '请输入描述信息',
       default: '',
